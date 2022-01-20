@@ -11,6 +11,14 @@ pre {
   margin: 0;
 }
 
+button {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  font: inherit;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

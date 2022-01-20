@@ -10,7 +10,7 @@ type QuizPageData = {
   };
 };
 
-export function useQuizPage(): QuizPageData {
+export function useQuizPageData(): QuizPageData {
   const gridStyle = `
 grid-template-rows: 1fr 1fr 1fr;
 grid-template-columns: 1fr 1fr 1fr;

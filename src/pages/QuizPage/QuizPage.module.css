@@ -43,7 +43,7 @@
   aspect-ratio: 1 / 1;
 }
 
-.normalItem {
+.normalItem, .selectedItem {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -56,4 +56,10 @@
 .cheatItem {
   background-color: #ffff44;
   opacity: 0.75;
+  pointer-events: none;
+}
+
+.selectedItem {
+  background-color: #88ddff;
+  color: #2233ff;
 }
