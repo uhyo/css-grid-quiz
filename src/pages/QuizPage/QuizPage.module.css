@@ -1,3 +1,51 @@
 .page {
+  display: grid;
+  grid-template:
+    "main def1" auto
+    "main def2" 1fr
+    "cont cont" auto / 1fr auto;
 
+  --grid-bg-color: #ffffff;
+  --grid-gap-color: #222222;
+  --code-bg-color: #d3d3d3;
+}
+
+@media (prefers-color-scheme: dark) {
+  .page {
+    --grid-bg-color: #222222;
+    --grid-gap-color: #ffffff;
+  }
+}
+
+.mainArea {
+  grid-area: main;
+  background-color: var(--grid-gap-color);
+  padding: 1px;
+}
+
+.gridDef {
+  grid-area: def1;
+  background-color: var(--code-bg-color);
+  padding: 0.5em;
+}
+
+.itemDef {
+  grid-area: def2;
+  background-color: var(--code-bg-color);
+  padding: 0.5em;
+}
+
+.mainGrid {
+  display: grid;
+  gap: 1px;
+  aspect-ratio: 1 / 1;
+}
+
+.normalItem {
+  background-color: var(--grid-bg-color);
+}
+
+.cheatItem {
+  background-color: #ffff44;
+  opacity: 0.75;
 }
