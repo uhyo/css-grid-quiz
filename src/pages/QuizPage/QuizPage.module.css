@@ -7,6 +7,7 @@
 
   --grid-bg-color: #ffffff;
   --grid-gap-color: #222222;
+  --grid-fg-color: #666666;
   --code-bg-color: #d3d3d3;
 }
 
@@ -14,6 +15,7 @@
   .page {
     --grid-bg-color: #222222;
     --grid-gap-color: #ffffff;
+    --grid-fg-color: #aaaaaa;
   }
 }
 
@@ -42,7 +44,13 @@
 }
 
 .normalItem {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
   background-color: var(--grid-bg-color);
+  color: var(--grid-fg-color);
+  font-size: 24px;
 }
 
 .cheatItem {

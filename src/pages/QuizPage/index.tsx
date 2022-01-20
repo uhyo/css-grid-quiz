@@ -20,8 +20,6 @@ ${indent(itemStyle)}
   const gridStyleObj = useMemo(() => simpleParseCss(gridStyle), [gridStyle]);
   const itemStyleObj = useMemo(() => simpleParseCss(itemStyle), [itemStyle]);
 
-  console.log({ gridStyleObj, itemStyleObj });
-
   return (
     <div className={classes.page}>
       <pre className={classes.gridDef}>
@@ -42,7 +40,9 @@ ${indent(itemStyle)}
                     gridRow: row + 1,
                     gridColumn: column + 1,
                   }}
-                />
+                >
+                  ({column + 1}, {row + 1})
+                </div>
               ))}
             </Fragment>
           ))}
