@@ -9,6 +9,7 @@
   --grid-gap-color: #222222;
   --grid-fg-color: #666666;
   --code-bg-color: #d3d3d3;
+  --cont-bg-color: #e8e8e8;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,6 +17,7 @@
     --grid-bg-color: #222222;
     --grid-gap-color: #ffffff;
     --grid-fg-color: #aaaaaa;
+    --cont-bg-color: #333333;
   }
 }
 
@@ -55,11 +57,34 @@
 
 .cheatItem {
   background-color: #ffff44;
-  opacity: 0.75;
+  opacity: 0.5;
   pointer-events: none;
 }
 
 .selectedItem {
   background-color: #88ddff;
   color: #2233ff;
+}
+
+.controlGrid {
+  grid-area: cont;
+  background-size: auto auto;
+  background-color: rgba(255, 255, 255, 1);
+  background-image: repeating-linear-gradient(120deg, transparent, transparent 25px, var(--cont-bg-color) 25px, var(--cont-bg-color) 40px );
+  padding: 1.5em;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+}
+
+.controlGrid button {
+  border-radius: 0.75em;
+  padding: 0.25em 0.5em;
+  background-color: #0cb826;
+  color: white;
+  font-weight: bold;
+}
+
+.controlGrid button.wrong {
+  background-color: #1d6fb6;
 }

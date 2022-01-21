@@ -7,7 +7,8 @@ import { useQuizPageData } from "./useQuizPageData";
 import { useQuizPageLogic } from "./useQuizPageLogic";
 
 export const QuizPage: React.VFC = () => {
-  const { gridStyle, itemStyle, gridDef } = useQuizPageData();
+  const quizPageData = useQuizPageData();
+  const { gridStyle, itemStyle, gridDef } = quizPageData;
 
   const { gridStyleDisp, gridStyleObj } = useMemo(
     () => ({
@@ -29,7 +30,8 @@ ${indent(itemStyle)}
     [itemStyle]
   );
 
-  const { selectedItems, toggleItem } = useQuizPageLogic();
+  const { selectedItems, buttonState, toggleItem, check } =
+    useQuizPageLogic(quizPageData);
 
   return (
     <div className={classes.page}>
@@ -41,19 +43,19 @@ ${indent(itemStyle)}
       </pre>
       <div className={classes.mainArea}>
         <div className={classes.mainGrid} style={gridStyleObj}>
-          {Array.from(range(0, gridDef.rows)).map((row) => (
+          {Array.from(range(1, gridDef.rows + 1)).map((row) => (
             <Fragment key={`row-${row}`}>
-              {Array.from(range(0, gridDef.columns)).map((column) => (
+              {Array.from(range(1, gridDef.columns + 1)).map((column) => (
                 <button
                   key={`column-${column}`}
                   className={classes.normalItem}
                   style={{
-                    gridRow: row + 1,
-                    gridColumn: column + 1,
+                    gridRow: row,
+                    gridColumn: column,
                   }}
                   onClick={() => toggleItem(column, row)}
                 >
-                  ({column + 1}, {row + 1})
+                  ({column}, {row})
                 </button>
               ))}
             </Fragment>
@@ -66,16 +68,27 @@ ${indent(itemStyle)}
                 key={itemKey}
                 className={classes.selectedItem}
                 style={{
-                  gridRow: row + 1,
-                  gridColumn: column + 1,
+                  gridRow: row,
+                  gridColumn: column,
                 }}
                 onClick={() => toggleItem(column, row)}
               >
-                ({column + 1}, {row + 1})
+                ({column}, {row})
               </div>
             );
           })}
         </div>
+      </div>
+      <div className={classes.controlGrid}>
+        {buttonState === "check" ? (
+          <button onClick={check}>Check</button>
+        ) : buttonState === "correct" ? (
+          <button onClick={check}>Correct!</button>
+        ) : buttonState === "wrong" ? (
+          <button className={classes.wrong} onClick={check}>
+            Wrong…
+          </button>
+        ) : null}
       </div>
     </div>
   );
