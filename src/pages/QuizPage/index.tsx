@@ -9,6 +9,7 @@ import { useQuizPageLogic } from "./useQuizPageLogic";
 
 export const QuizPage: React.VFC = () => {
   const {
+    params: { id },
     data: { quizData },
   } = useMatch<{
     LoaderData: {
@@ -40,8 +41,10 @@ ${indent(itemStyle)}
     [itemStyle]
   );
 
-  const { selectedItems, buttonState, toggleItem, check } =
-    useQuizPageLogic(quizData);
+  const { selectedItems, buttonState, toggleItem, check } = useQuizPageLogic(
+    id,
+    quizData
+  );
 
   return (
     <div className={classes.page}>

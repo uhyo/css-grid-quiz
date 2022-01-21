@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-location";
 import { GridPosition } from "../../questions/GridPosition";
 import { QuizData } from "../../questions/QuizData";
 
 export type ButtonState = "check" | "correct" | "wrong";
 
-export function useQuizPageLogic(data: QuizData) {
+export function useQuizPageLogic(quizId: string, data: QuizData) {
+  const navigate = useNavigate();
   const [selectedItems, setSelectedItems] = useState<GridPosition[]>([]);
   const [buttonState, setButtonState] = useState<ButtonState>("check");
 
@@ -30,6 +32,14 @@ export function useQuizPageLogic(data: QuizData) {
   }, [selectedItems, data]);
 
   useEffect(() => {
+    if (buttonState === "correct") {
+      const timer = setTimeout(() => {
+        navigate({
+          to: `/quiz/v1/${Number(quizId) + 1}`,
+        });
+      }, 500);
+      return () => clearTimeout(timer);
+    }
     if (buttonState === "wrong") {
       const timer = setTimeout(() => {
         setButtonState("check");

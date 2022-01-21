@@ -1,6 +1,11 @@
 import { GridPosition } from "./GridPosition";
 
-export type QuizData = {
+export type QuizDataBase = {
+  noNext?: true;
+};
+
+export type QuizData = QuizDataBase & {
+  type: "grid";
   /**
    * Style of grid containter.
    */

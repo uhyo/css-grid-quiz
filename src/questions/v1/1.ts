@@ -1,21 +1,22 @@
 import { QuizData } from "../QuizData";
 
 const gridStyle = `
-grid-template-rows: 1fr 1fr 1fr;
-grid-template-columns: 1fr 1fr 1fr;
+grid-template-columns: repeat(4, 1fr);
+grid-template-rows: repeat(4, 1fr);
   `.trim();
 
 const itemStyle = `
-grid-row: 1 / 3;
-grid-column: 1 / 3; 
+grid-column: 3;
+grid-row: 2;
   `.trim();
 
 export const quizData: QuizData = {
+  type: "grid",
   gridStyle,
   itemStyle,
   gridDef: {
-    rows: 3,
-    columns: 3,
+    rows: 4,
+    columns: 4,
   },
-  answer: ["1-1", "1-2", "2-1", "2-2"],
+  answer: ["3-2"],
 };

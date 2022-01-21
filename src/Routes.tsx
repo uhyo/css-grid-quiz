@@ -14,10 +14,10 @@ const routes: Route[] = [
         path: "/v1",
         children: [
           {
-            path: ":page",
+            path: ":id",
             loader: async ({ params }) => {
               return {
-                quizData: await loadQuestionV1(params.page),
+                quizData: await loadQuestionV1(params.id),
               };
             },
             element: <QuizPage />,
