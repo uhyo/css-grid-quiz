@@ -1,14 +1,24 @@
 import { Fragment, useMemo } from "react";
+import { useMatch } from "react-location";
+import { QuizData } from "../../questions/QuizData";
 import { indent } from "../../utils/indent";
 import { range } from "../../utils/range";
 import { simpleParseCss } from "../../utils/simpleParseCss";
 import classes from "./QuizPage.module.css";
-import { useQuizPageData } from "./useQuizPageData";
 import { useQuizPageLogic } from "./useQuizPageLogic";
 
 export const QuizPage: React.VFC = () => {
-  const quizPageData = useQuizPageData();
-  const { gridStyle, itemStyle, gridDef } = quizPageData;
+  const {
+    data: { quizData },
+  } = useMatch<{
+    LoaderData: {
+      quizData: QuizData;
+    };
+  }>();
+  if (quizData === undefined) {
+    return null;
+  }
+  const { gridStyle, itemStyle, gridDef } = quizData;
 
   const { gridStyleDisp, gridStyleObj } = useMemo(
     () => ({
@@ -31,7 +41,7 @@ ${indent(itemStyle)}
   );
 
   const { selectedItems, buttonState, toggleItem, check } =
-    useQuizPageLogic(quizPageData);
+    useQuizPageLogic(quizData);
 
   return (
     <div className={classes.page}>

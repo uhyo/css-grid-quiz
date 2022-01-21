@@ -1,8 +1,8 @@
 import "./App.css";
-import { QuizPage } from "./pages/QuizPage";
+import { Routes } from "./Routes";
 
 function App() {
-  return <QuizPage />;
+  return <Routes />;
 }
 
 export default App;

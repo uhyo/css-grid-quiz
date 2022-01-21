@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { GridPosition } from "./GridPosition";
-import { QuizPageData } from "./useQuizPageData";
+import { GridPosition } from "../../questions/GridPosition";
+import { QuizData } from "../../questions/QuizData";
 
 export type ButtonState = "check" | "correct" | "wrong";
 
-export function useQuizPageLogic(data: QuizPageData) {
+export function useQuizPageLogic(data: QuizData) {
   const [selectedItems, setSelectedItems] = useState<GridPosition[]>([]);
   const [buttonState, setButtonState] = useState<ButtonState>("check");
 
