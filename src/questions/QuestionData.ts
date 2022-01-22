@@ -32,6 +32,10 @@ export type GridQuestion = QuestionDataBase & {
    */
   extensible?: boolean;
   /**
+   * Style for subgrid.
+   */
+  subgridStyle?: string;
+  /**
    * Correct answer.
    */
   answer: readonly GridPosition[];

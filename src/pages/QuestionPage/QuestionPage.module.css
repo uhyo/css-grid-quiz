@@ -2,7 +2,8 @@
   display: grid;
   grid-template:
     "main def1" auto
-    "main def2" 1fr
+    "main def2" auto
+    "main def3" 1fr
     "cont cont" auto / 1fr auto;
 
   --grid-bg-color: #ffffff;
@@ -47,8 +48,14 @@
   padding: 0.5em;
 }
 
-.itemDef {
+.subgridDef {
   grid-area: def2;
+  background-color: var(--code-bg-color);
+  padding: 0.5em;
+}
+
+.itemDef {
+  grid-area: def3;
   background-color: var(--code-bg-color);
   padding: 0.5em;
 }
@@ -64,9 +71,14 @@
 }
 
 .cheatItem {
-  inset: 0;
   background-color: #ffff44;
   opacity: 0.5;
+}
+
+.cheatSubgrid {
+  display: grid;
+  background-color: #ffbbbb;
+  opacity: 0.2;
 }
 
 .controlGrid {

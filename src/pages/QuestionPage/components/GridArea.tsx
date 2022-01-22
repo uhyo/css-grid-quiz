@@ -6,6 +6,10 @@ import classes from "./GridArea.module.css";
 
 type GridDef = { rows: number; columns: number };
 
+type SubgridDef = {
+  style: React.CSSProperties;
+};
+
 type PropsBase = {
   gridDef: GridDef;
   className?: string;
@@ -63,22 +67,6 @@ export const GridArea: React.VFC<Props> = (props) => {
           })}
         </Fragment>
       ))}
-      {/* {props.selectedItems.map((itemKey) => {
-        const [column, row] = itemKey.split(",").map((v) => Number(v));
-        return (
-          <div
-            key={itemKey}
-            className={classes.selectedItem}
-            style={{
-              gridRow: row,
-              gridColumn: column,
-            }}
-            onClick={() => props.toggleItem(column, row)}
-          >
-            {isInGrid(column, row, gridDef) ? `(${column}, ${row})` : null}
-          </div>
-        );
-      })} */}
     </>
   ) : null;
 

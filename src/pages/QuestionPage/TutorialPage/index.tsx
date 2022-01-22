@@ -13,7 +13,9 @@ export const TutorialPage: React.VFC<Props> = ({ id, tutorial }) => {
     <div className={classes.page}>
       <div className={classes.tutorialArea}>{tutorial.contents}</div>
       <div className={classes.controlGrid}>
-        <button onClick={goToNextPage}>Proceed</button>
+        <button className={classes.check} onClick={goToNextPage}>
+          Proceed
+        </button>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const QuizPage: React.VFC<Props> = ({ quizId, quizData }) => {
-  const { gridStyle, itemStyle, gridDef, extensible } = quizData;
+  const { gridStyle, subgridStyle, itemStyle, gridDef, extensible } = quizData;
 
   const { gridStyleDisp, gridStyleObj } = useMemo(
     () => ({
@@ -25,6 +25,18 @@ ${indent(gridStyle)}
     }),
     [gridStyle]
   );
+  const { subgridStyleDisp, subgridStyleObj } = useMemo(() => {
+    if (!subgridStyle) {
+      return { subgridStyleDisp: undefined, subgridStyleObj: undefined };
+    }
+    return {
+      subgridStyleDisp: `.subgrid {
+  display: grid;
+${indent(subgridStyle)}
+}`,
+      subgridStyleObj: simpleParseCss(subgridStyle),
+    };
+  }, [subgridStyle]);
   const { itemStyleDisp, itemStyleObj } = useMemo(
     () => ({
       itemStyleDisp: `.item {
@@ -62,7 +74,13 @@ ${indent(itemStyle)}
         style={gridStyleObj}
         gridDef={gridDef}
       >
-        <div className={classes.cheatItem} style={itemStyleObj} />
+        {subgridStyleObj ? (
+          <div className={classes.cheatSubgrid} style={subgridStyleObj}>
+            <div className={classes.cheatItem} style={itemStyleObj} />
+          </div>
+        ) : (
+          <div className={classes.cheatItem} style={itemStyleObj} />
+        )}
       </GridArea>
     </div>
   );
@@ -72,6 +90,11 @@ ${indent(itemStyle)}
       <pre className={classes.gridDef}>
         <code>{gridStyleDisp}</code>
       </pre>
+      {subgridStyleDisp ? (
+        <pre className={classes.subgridDef}>
+          <code>{subgridStyleDisp}</code>
+        </pre>
+      ) : null}
       <pre className={classes.itemDef}>
         <code>{itemStyleDisp}</code>
       </pre>
