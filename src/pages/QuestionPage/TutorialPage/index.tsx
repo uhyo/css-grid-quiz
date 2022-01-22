@@ -13,9 +13,11 @@ export const TutorialPage: React.VFC<Props> = ({ id, tutorial }) => {
     <div className={classes.page}>
       <div className={classes.tutorialArea}>{tutorial.contents}</div>
       <div className={classes.controlGrid}>
-        <button className={classes.check} onClick={goToNextPage}>
-          Proceed
-        </button>
+        {!tutorial.noNext && (
+          <button className={classes.check} onClick={goToNextPage}>
+            Proceed
+          </button>
+        )}
       </div>
     </div>
   );

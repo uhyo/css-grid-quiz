@@ -5,3 +5,13 @@
 .sampleGridWrapper {
   width: 300px;
 }
+
+.shareOnTwitter {
+  background-color: #00aced;
+  color: #ffffff;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  text-decoration: none;
+}
