@@ -88,3 +88,9 @@
 .controlGrid button.wrong {
   background-color: #1d6fb6;
 }
+
+.tutorialArea {
+  grid-row: main;
+  grid-column: 1 / -1;
+  padding: 1em;
+}

@@ -1,4 +1,4 @@
-import { QuizData } from "../QuizData";
+import { QuestionData } from "../QuestionData";
 
 const gridStyle = `
 grid-template-columns: repeat(4, 1fr);
@@ -10,7 +10,7 @@ grid-column: 3;
 grid-row: 2;
   `.trim();
 
-export const quizData: QuizData = {
+export const data: QuestionData = {
   type: "grid",
   gridStyle,
   itemStyle,

@@ -1,10 +1,10 @@
-import { QuizData } from "./QuizData";
+import { QuestionData } from "./QuestionData";
 
-export async function loadQuestionV1(id: string): Promise<QuizData> {
+export async function loadQuestionV1(id: string): Promise<QuestionData> {
   try {
-    const ns = await import(`./v1/${id}.ts`);
-    if (ns.quizData) {
-      return ns.quizData;
+    const ns = await import(`./v1/${id}.tsx`);
+    if (ns.data) {
+      return ns.data;
     }
   } catch (err) {
     console.error(err);

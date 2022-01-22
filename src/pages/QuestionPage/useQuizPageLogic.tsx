@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-location";
 import { GridPosition } from "../../questions/GridPosition";
-import { QuizData } from "../../questions/QuizData";
+import { QuizData } from "../../questions/QuestionData";
 
 export type ButtonState = "check" | "correct" | "wrong";
 

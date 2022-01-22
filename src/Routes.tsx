@@ -1,5 +1,5 @@
 import { ReactLocation, Route, Router } from "react-location";
-import { QuizPage } from "./pages/QuizPage";
+import { QuestionPage } from "./pages/QuestionPage";
 import { loadQuestionV1 } from "./questions/loadQuestion";
 
 const routes: Route[] = [
@@ -20,7 +20,7 @@ const routes: Route[] = [
                 quizData: await loadQuestionV1(params.id),
               };
             },
-            element: <QuizPage />,
+            element: <QuestionPage />,
           },
         ],
       },
