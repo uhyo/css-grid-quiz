@@ -23,6 +23,19 @@
 
 .mainArea {
   grid-area: main;
+  display: grid;
+  grid-template: auto 1fr / 1fr;
+  z-index: 0;
+}
+
+.mainGrid {
+  grid-area: 1 / 1;
+}
+
+.cheatGrid {
+  grid-area: 1 / 1;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .gridDef {

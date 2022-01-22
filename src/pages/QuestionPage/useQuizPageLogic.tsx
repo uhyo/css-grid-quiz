@@ -1,27 +1,34 @@
 import { useCallback, useEffect, useState } from "react";
 import { GridPosition } from "../../questions/GridPosition";
 import { QuizData } from "../../questions/QuestionData";
+import { useStateReset } from "../../utils/hooks/useStateReset";
 import { useNextPage } from "./hooks/useNextPage";
 
 export type ButtonState = "check" | "correct" | "wrong";
 
 export function useQuizPageLogic(quizId: string, data: QuizData) {
   const { goToNextPage } = useNextPage(quizId);
-  const [selectedItems, setSelectedItems] = useState<GridPosition[]>([]);
+  const [selectedItems, setSelectedItems] = useStateReset<GridPosition[]>(
+    [quizId],
+    () => []
+  );
   const [buttonState, setButtonState] = useState<ButtonState>("check");
 
-  const toggleItem = useCallback((column: number, row: number) => {
-    setSelectedItems((selectedItems) => {
-      const newSelectedItems = [...selectedItems];
-      const itemKey: GridPosition = `${column}-${row}`;
-      if (newSelectedItems.includes(itemKey)) {
-        newSelectedItems.splice(newSelectedItems.indexOf(itemKey), 1);
-      } else {
-        newSelectedItems.push(itemKey);
-      }
-      return newSelectedItems;
-    });
-  }, []);
+  const toggleItem = useCallback(
+    (column: number, row: number) => {
+      setSelectedItems((selectedItems) => {
+        const newSelectedItems = [...selectedItems];
+        const itemKey: GridPosition = `${column}-${row}`;
+        if (newSelectedItems.includes(itemKey)) {
+          newSelectedItems.splice(newSelectedItems.indexOf(itemKey), 1);
+        } else {
+          newSelectedItems.push(itemKey);
+        }
+        return newSelectedItems;
+      });
+    },
+    [setSelectedItems]
+  );
 
   const check = useCallback(() => {
     if (checkAnswer(selectedItems, data.answer)) {
@@ -34,6 +41,7 @@ export function useQuizPageLogic(quizId: string, data: QuizData) {
   useEffect(() => {
     if (buttonState === "correct") {
       const timer = setTimeout(() => {
+        setButtonState("check");
         goToNextPage();
       }, 500);
       return () => clearTimeout(timer);

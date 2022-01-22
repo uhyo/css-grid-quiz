@@ -41,6 +41,7 @@ export const Tutorial1: React.VFC = () => {
       <p>Sample:</p>
       <div className={classes.sampleGridWrapper}>
         <GridArea
+          hasGrid
           gridDef={gridDef}
           selectedItems={selectedItems}
           toggleItem={toggleItem}

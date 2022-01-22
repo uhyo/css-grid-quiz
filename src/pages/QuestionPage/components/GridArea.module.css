@@ -2,11 +2,14 @@
   display: grid;
   gap: 1px;
   aspect-ratio: 1 / 1;
-  background-color: var(--grid-gap-color);
   padding: 1px;
 }
 
-.normalItem, .selectedItem {
+.gridHasGrid {
+  background-color: var(--grid-gap-color);
+}
+
+.gridHasGrid :where(.normalItem, .selectedItem) {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;

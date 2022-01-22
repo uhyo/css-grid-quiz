@@ -49,11 +49,17 @@ ${indent(itemStyle)}
       </pre>
       <div className={classes.mainArea}>
         <GridArea
+          hasGrid
           className={classes.mainGrid}
           style={gridStyleObj}
           gridDef={gridDef}
           selectedItems={selectedItems}
           toggleItem={toggleItem}
+        />
+        <GridArea
+          className={classes.cheatGrid}
+          style={gridStyleObj}
+          gridDef={gridDef}
         >
           <div className={classes.cheatItem} style={itemStyleObj} />
         </GridArea>
