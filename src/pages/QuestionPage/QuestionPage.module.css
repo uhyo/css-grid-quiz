@@ -23,8 +23,6 @@
 
 .mainArea {
   grid-area: main;
-  background-color: var(--grid-gap-color);
-  padding: 1px;
 }
 
 .gridDef {
@@ -37,12 +35,6 @@
   grid-area: def2;
   background-color: var(--code-bg-color);
   padding: 0.5em;
-}
-
-.mainGrid {
-  display: grid;
-  gap: 1px;
-  aspect-ratio: 1 / 1;
 }
 
 .normalItem, .selectedItem {
@@ -59,11 +51,6 @@
   background-color: #ffff44;
   opacity: 0.5;
   pointer-events: none;
-}
-
-.selectedItem {
-  background-color: #88ddff;
-  color: #2233ff;
 }
 
 .controlGrid {

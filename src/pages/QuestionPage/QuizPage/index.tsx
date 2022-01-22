@@ -1,8 +1,8 @@
-import { Fragment, useMemo } from "react";
+import { useMemo } from "react";
 import { QuizData } from "../../../questions/QuestionData";
 import { indent } from "../../../utils/indent";
-import { range } from "../../../utils/range";
 import { simpleParseCss } from "../../../utils/simpleParseCss";
+import { GridArea } from "../components/GridArea";
 import classes from "../QuestionPage.module.css";
 import { useQuizPageLogic } from "../useQuizPageLogic";
 
@@ -48,42 +48,15 @@ ${indent(itemStyle)}
         <code>{itemStyleDisp}</code>
       </pre>
       <div className={classes.mainArea}>
-        <div className={classes.mainGrid} style={gridStyleObj}>
-          {Array.from(range(1, gridDef.rows + 1)).map((row) => (
-            <Fragment key={`row-${row}`}>
-              {Array.from(range(1, gridDef.columns + 1)).map((column) => (
-                <button
-                  key={`column-${column}`}
-                  className={classes.normalItem}
-                  style={{
-                    gridRow: row,
-                    gridColumn: column,
-                  }}
-                  onClick={() => toggleItem(column, row)}
-                >
-                  ({column}, {row})
-                </button>
-              ))}
-            </Fragment>
-          ))}
+        <GridArea
+          className={classes.mainGrid}
+          style={gridStyleObj}
+          gridDef={gridDef}
+          selectedItems={selectedItems}
+          toggleItem={toggleItem}
+        >
           <div className={classes.cheatItem} style={itemStyleObj} />
-          {selectedItems.map((itemKey) => {
-            const [column, row] = itemKey.split("-").map((v) => Number(v));
-            return (
-              <div
-                key={itemKey}
-                className={classes.selectedItem}
-                style={{
-                  gridRow: row,
-                  gridColumn: column,
-                }}
-                onClick={() => toggleItem(column, row)}
-              >
-                ({column}, {row})
-              </div>
-            );
-          })}
-        </div>
+        </GridArea>
       </div>
       <div className={classes.controlGrid}>
         {buttonState === "check" ? (

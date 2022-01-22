@@ -1,0 +1,22 @@
+.grid {
+  display: grid;
+  gap: 1px;
+  aspect-ratio: 1 / 1;
+  background-color: var(--grid-gap-color);
+  padding: 1px;
+}
+
+.normalItem, .selectedItem {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--grid-bg-color);
+  color: var(--grid-fg-color);
+  font-size: 24px;
+}
+
+.selectedItem {
+  background-color: #88ddff;
+  color: #2233ff;
+}
