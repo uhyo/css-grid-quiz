@@ -1,34 +1,17 @@
 import { useCallback, useEffect, useState } from "react";
-import { GridPosition } from "../../questions/GridPosition";
-import { QuizData } from "../../questions/QuestionData";
-import { useStateReset } from "../../utils/hooks/useStateReset";
-import { useNextPage } from "./hooks/useNextPage";
+import { GridPosition } from "../../../questions/GridPosition";
+import { QuizData } from "../../../questions/QuestionData";
+import { useNextPage } from "../hooks/useNextPage";
+import { useGridExtension } from "./useGridExtension";
+import { useGridItemSelection } from "./useGridItemSelection";
 
 export type ButtonState = "check" | "correct" | "wrong";
 
 export function useQuizPageLogic(quizId: string, data: QuizData) {
   const { goToNextPage } = useNextPage(quizId);
-  const [selectedItems, setSelectedItems] = useStateReset<GridPosition[]>(
-    [quizId],
-    () => []
-  );
+  const { selectedItems, toggleItem } = useGridItemSelection(quizId);
+  const { extension, extend: extendGrid } = useGridExtension(quizId);
   const [buttonState, setButtonState] = useState<ButtonState>("check");
-
-  const toggleItem = useCallback(
-    (column: number, row: number) => {
-      setSelectedItems((selectedItems) => {
-        const newSelectedItems = [...selectedItems];
-        const itemKey: GridPosition = `${column}-${row}`;
-        if (newSelectedItems.includes(itemKey)) {
-          newSelectedItems.splice(newSelectedItems.indexOf(itemKey), 1);
-        } else {
-          newSelectedItems.push(itemKey);
-        }
-        return newSelectedItems;
-      });
-    },
-    [setSelectedItems]
-  );
 
   const check = useCallback(() => {
     if (checkAnswer(selectedItems, data.answer)) {
@@ -58,6 +41,8 @@ export function useQuizPageLogic(quizId: string, data: QuizData) {
   return {
     selectedItems,
     toggleItem,
+    extension,
+    extendGrid,
     buttonState,
     check,
   };

@@ -1,6 +1,5 @@
-import { useCallback, useState } from "react";
 import { GridArea } from "../../../pages/QuestionPage/components/GridArea";
-import { GridPosition } from "../../GridPosition";
+import { useGridItemSelection } from "../../../pages/QuestionPage/logic/useGridItemSelection";
 import classes from "./Tutorial.module.css";
 
 export const Tutorial1: React.VFC = () => {
@@ -56,21 +55,9 @@ function useSampleGrid() {
     columns: 2,
     rows: 2,
   };
-  const [selectedItems, setSelectedItems] = useState<readonly GridPosition[]>([
-    "1-1",
+  const { selectedItems, toggleItem } = useGridItemSelection("Tutorial1", [
+    "1,1",
   ]);
-  const toggleItem = useCallback((column: number, row: number) => {
-    setSelectedItems((selectedItems) => {
-      if (selectedItems.includes(`${column}-${row}`)) {
-        const newSelectedItems = selectedItems.filter(
-          (item) => item !== `${column}-${row}`
-        );
-        return newSelectedItems;
-      } else {
-        return [...selectedItems, `${column}-${row}`];
-      }
-    });
-  }, []);
 
   return {
     gridDef,

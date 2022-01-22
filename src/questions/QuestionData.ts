@@ -28,6 +28,10 @@ export type GridQuestion = QuestionDataBase & {
     columns: number;
   };
   /**
+   * Whether grid is extensible.
+   */
+  extensible?: boolean;
+  /**
    * Correct answer.
    */
   answer: readonly GridPosition[];

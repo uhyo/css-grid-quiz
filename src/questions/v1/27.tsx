@@ -6,17 +6,18 @@ grid-template-rows: repeat(4, 1fr);
   `.trim();
 
 const itemStyle = `
-grid-column: 1 / 3;
-grid-row: 2 / 3;
+grid-column: 4 / 6;
+grid-row: 3;
   `.trim();
 
 export const data: QuestionData = {
   type: "grid",
+  extensible: true,
   gridStyle,
   itemStyle,
   gridDef: {
     rows: 4,
     columns: 4,
   },
-  answer: ["1,2", "2,2"],
+  answer: ["4,3", "5,3"],
 };

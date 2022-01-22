@@ -1,1 +1,1 @@
-export type GridPosition = `${number}-${number}`;
+export type GridPosition = `${number},${number}`;

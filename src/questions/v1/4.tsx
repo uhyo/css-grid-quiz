@@ -18,5 +18,5 @@ export const data: QuestionData = {
     rows: 4,
     columns: 4,
   },
-  answer: ["1-4", "2-4", "3-4"],
+  answer: ["1,4", "2,4", "3,4"],
 };

@@ -3,8 +3,9 @@ import { QuizData } from "../../../questions/QuestionData";
 import { indent } from "../../../utils/indent";
 import { simpleParseCss } from "../../../utils/simpleParseCss";
 import { GridArea } from "../components/GridArea";
+import { GridAreaExtensionControl } from "../components/GridAreaExtensionControl";
+import { useQuizPageLogic } from "../logic/useQuizPageLogic";
 import classes from "../QuestionPage.module.css";
-import { useQuizPageLogic } from "../useQuizPageLogic";
 
 type Props = {
   quizId: string;
@@ -12,7 +13,7 @@ type Props = {
 };
 
 export const QuizPage: React.VFC<Props> = ({ quizId, quizData }) => {
-  const { gridStyle, itemStyle, gridDef } = quizData;
+  const { gridStyle, itemStyle, gridDef, extensible } = quizData;
 
   const { gridStyleDisp, gridStyleObj } = useMemo(
     () => ({
@@ -34,9 +35,35 @@ ${indent(itemStyle)}
     [itemStyle]
   );
 
-  const { selectedItems, buttonState, toggleItem, check } = useQuizPageLogic(
-    quizId,
-    quizData
+  const {
+    selectedItems,
+    buttonState,
+    extension,
+    toggleItem,
+    extendGrid,
+    check,
+  } = useQuizPageLogic(quizId, quizData);
+
+  const mainGrid = (
+    <div className={classes.mainGridContainer}>
+      <GridArea
+        hasGrid
+        extension={extension}
+        className={classes.mainGrid}
+        style={gridStyleObj}
+        gridDef={gridDef}
+        selectedItems={selectedItems}
+        toggleItem={toggleItem}
+      />
+      <GridArea
+        className={classes.cheatGrid}
+        extension={extension}
+        style={gridStyleObj}
+        gridDef={gridDef}
+      >
+        <div className={classes.cheatItem} style={itemStyleObj} />
+      </GridArea>
+    </div>
   );
 
   return (
@@ -48,21 +75,13 @@ ${indent(itemStyle)}
         <code>{itemStyleDisp}</code>
       </pre>
       <div className={classes.mainArea}>
-        <GridArea
-          hasGrid
-          className={classes.mainGrid}
-          style={gridStyleObj}
-          gridDef={gridDef}
-          selectedItems={selectedItems}
-          toggleItem={toggleItem}
-        />
-        <GridArea
-          className={classes.cheatGrid}
-          style={gridStyleObj}
-          gridDef={gridDef}
-        >
-          <div className={classes.cheatItem} style={itemStyleObj} />
-        </GridArea>
+        {extensible ? (
+          <GridAreaExtensionControl onExtend={extendGrid}>
+            {mainGrid}
+          </GridAreaExtensionControl>
+        ) : (
+          mainGrid
+        )}
       </div>
       <div className={classes.controlGrid}>
         {buttonState === "check" ? (
