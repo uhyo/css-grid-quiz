@@ -5,6 +5,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --body-bg-color: white;
+  --body-fg-color: black;
+  background-color: var(--body-bg-color);
+  color: var(--body-fg-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    --body-bg-color: #444444;
+    --body-fg-color: white;
+  }
 }
 
 pre {

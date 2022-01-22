@@ -89,7 +89,8 @@ ${indent(itemStyle)}
   );
 
   return (
-    <div className={classes.page}>
+    <section className={classes.page}>
+      <h1 className={classes.titleArea}>Page {quizId}</h1>
       <pre className={classes.gridDef}>
         <code>{gridStyleDisp}</code>
       </pre>
@@ -126,6 +127,6 @@ ${indent(itemStyle)}
           </button>
         ) : null}
       </div>
-    </div>
+    </section>
   );
 };

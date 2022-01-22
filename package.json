@@ -2,7 +2,7 @@
   "name": "css-grid-quiz",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 0.0.0.0",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --watch"

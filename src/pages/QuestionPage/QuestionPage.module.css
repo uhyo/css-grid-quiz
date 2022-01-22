@@ -1,16 +1,47 @@
 .page {
+  max-width: 1024px;
+  margin: 0 auto;
   display: grid;
   grid-template:
+    "main title" auto
     "main def1" auto
     "main def2" auto
-    "main def3" 1fr
+    "main def3" minmax(0, 1fr)
     "cont cont" auto / 1fr auto;
 
   --grid-bg-color: #ffffff;
   --grid-gap-color: #222222;
   --grid-fg-color: #666666;
   --code-bg-color: #d3d3d3;
+  --code-fg-color: black;
   --cont-bg-color: #e8e8e8;
+  --grid-active-bg-color: #88ddff;
+  --grid-active-fg-color: #2233ff;
+
+  --grid-font-size: 24px;
+}
+
+@media (max-width: 750px) {
+  .page {
+    --grid-font-size: 14px;
+  }
+}
+
+@media (max-width: 700px) {
+  .page {
+    grid-template:
+      "title" auto
+      "def1" auto
+      "def2" auto
+      "def3" auto
+      "main" auto
+      "cont" auto / 1fr;
+
+    --grid-font-size: 18px;
+  }
+  .page code {
+    font-size: 1em;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,8 +49,21 @@
     --grid-bg-color: #222222;
     --grid-gap-color: #ffffff;
     --grid-fg-color: #aaaaaa;
-    --cont-bg-color: #333333;
+    --cont-bg-color: #292929;
+    --code-bg-color: #494949;
+    --code-fg-color: white;
+    --grid-active-bg-color: #086f98;
+    --grid-active-fg-color: #dddeeb;
   }
+}
+
+.titleArea {
+  grid-area: title;
+  margin: 0;
+  padding: 0.5em;
+  background-color: #eeffee;
+  color: black;
+  font-size: 1.2em;
 }
 
 .mainArea {
@@ -45,18 +89,21 @@
 .gridDef {
   grid-area: def1;
   background-color: var(--code-bg-color);
+  color: var(--code-fg-color);
   padding: 0.5em;
 }
 
 .subgridDef {
   grid-area: def2;
   background-color: var(--code-bg-color);
+  color: var(--code-fg-color);
   padding: 0.5em;
 }
 
 .itemDef {
   grid-area: def3;
   background-color: var(--code-bg-color);
+  color: var(--code-fg-color);
   padding: 0.5em;
 }
 
@@ -67,7 +114,7 @@
   justify-content: center;
   background-color: var(--grid-bg-color);
   color: var(--grid-fg-color);
-  font-size: 24px;
+  font-size: var(--grid-font-size);
 }
 
 .cheatItem {
@@ -84,7 +131,7 @@
 .controlGrid {
   grid-area: cont;
   background-size: auto auto;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: var(--body-bg-color);
   background-image: repeating-linear-gradient(120deg, transparent, transparent 25px, var(--cont-bg-color) 25px, var(--cont-bg-color) 40px );
   padding: 1.5em;
   display: flex;

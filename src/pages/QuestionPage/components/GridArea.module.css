@@ -18,11 +18,11 @@
   justify-content: center;
   background-color: var(--grid-bg-color);
   color: var(--grid-fg-color);
-  font-size: 24px;
+  font-size: var(--grid-font-size);
   overflow: hidden;
 }
 
 .selectedItem {
-  background-color: #88ddff;
-  color: #2233ff;
+  background-color: var(--grid-active-bg-color);
+  color: var(--grid-active-fg-color);
 }
