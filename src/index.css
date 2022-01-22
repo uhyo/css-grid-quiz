@@ -30,6 +30,7 @@ button {
   border: none;
   background: none;
   font: inherit;
+  font-size: calc(10px + 2vmin);
 }
 
 code {

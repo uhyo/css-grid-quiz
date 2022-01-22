@@ -4,10 +4,8 @@
   display: grid;
   grid-template:
     "main title" auto
-    "main def1" auto
-    "main def2" auto
-    "main def3" minmax(0, 1fr)
-    "cont cont" auto / 1fr auto;
+    "main code" 1fr
+    "cont cont" 80px / 1fr auto;
 
   --grid-bg-color: #ffffff;
   --grid-gap-color: #222222;
@@ -21,26 +19,22 @@
   --grid-font-size: 24px;
 }
 
-@media (max-width: 750px) {
-  .page {
-    --grid-font-size: 14px;
-  }
-}
-
 @media (max-width: 700px) {
   .page {
     grid-template:
       "title" auto
-      "def1" auto
-      "def2" auto
-      "def3" auto
+      "code" auto
       "main" auto
-      "cont" auto / 1fr;
-
-    --grid-font-size: 18px;
+      "cont" 80px / 1fr;
   }
   .page code {
     font-size: 1em;
+  }
+}
+
+@media (max-width: 750px), (max-height: 460px) {
+  .page {
+    --grid-font-size: 18px;
   }
 }
 
@@ -60,7 +54,11 @@
 .titleArea {
   grid-area: title;
   margin: 0;
-  padding: 0.5em;
+  height: 40px;
+  padding: 0 0.5em;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
   background-color: #eeffee;
   color: black;
   font-size: 1.2em;
@@ -71,6 +69,9 @@
 }
 
 .mainGridContainer {
+  max-width: calc(100vh - 80px);
+  max-height: calc(100vh - 80px);
+  margin: 0 0 0 auto;
   display: grid;
   grid-template: auto 1fr / 1fr;
   z-index: 0;
@@ -86,24 +87,16 @@
   pointer-events: none;
 }
 
-.gridDef {
-  grid-area: def1;
+.defs {
+  max-height: calc(100vh - 120px);
+  grid-area: code;
   background-color: var(--code-bg-color);
   color: var(--code-fg-color);
-  padding: 0.5em;
+  overflow: auto;
+  scrollbar-gutter: stable;
 }
 
-.subgridDef {
-  grid-area: def2;
-  background-color: var(--code-bg-color);
-  color: var(--code-fg-color);
-  padding: 0.5em;
-}
-
-.itemDef {
-  grid-area: def3;
-  background-color: var(--code-bg-color);
-  color: var(--code-fg-color);
+.eachDef {
   padding: 0.5em;
 }
 
@@ -133,10 +126,10 @@
   background-size: auto auto;
   background-color: var(--body-bg-color);
   background-image: repeating-linear-gradient(120deg, transparent, transparent 25px, var(--cont-bg-color) 25px, var(--cont-bg-color) 40px );
-  padding: 1.5em;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
+  align-items: center;
   gap: 1em;
 }
 

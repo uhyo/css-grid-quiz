@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useMatch, useSearch } from "react-location";
 import { QuestionData } from "../../questions/QuestionData";
 import { QuizPage } from "./QuizPage";
@@ -15,6 +16,12 @@ export const QuestionPage: React.VFC = () => {
   const { cheat } = useSearch<{
     Search: { cheat?: string };
   }>();
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [id]);
   if (quizData === undefined) {
     return null;
   }

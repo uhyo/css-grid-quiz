@@ -91,17 +91,19 @@ ${indent(itemStyle)}
   return (
     <section className={classes.page}>
       <h1 className={classes.titleArea}>Page {quizId}</h1>
-      <pre className={classes.gridDef}>
-        <code>{gridStyleDisp}</code>
-      </pre>
-      {subgridStyleDisp ? (
-        <pre className={classes.subgridDef}>
-          <code>{subgridStyleDisp}</code>
+      <div className={classes.defs}>
+        <pre className={classes.eachDef}>
+          <code>{gridStyleDisp}</code>
         </pre>
-      ) : null}
-      <pre className={classes.itemDef}>
-        <code>{itemStyleDisp}</code>
-      </pre>
+        {subgridStyleDisp ? (
+          <pre className={classes.eachDef}>
+            <code>{subgridStyleDisp}</code>
+          </pre>
+        ) : null}
+        <pre className={classes.eachDef}>
+          <code>{itemStyleDisp}</code>
+        </pre>
+      </div>
       <div className={classes.mainArea}>
         {extensible ? (
           <GridAreaExtensionControl onExtend={extendGrid}>
