@@ -78,14 +78,19 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
+  gap: 1em;
 }
 
 .controlGrid button {
   border-radius: 0.75em;
   padding: 0.25em 0.5em;
-  background-color: #0cb826;
+  background-color: #888888;
   color: white;
   font-weight: bold;
+}
+
+.controlGrid button.check {
+  background-color: #0cb826;
 }
 
 .controlGrid button.wrong {

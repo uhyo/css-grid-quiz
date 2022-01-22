@@ -3,12 +3,12 @@ import { GridPosition } from "../../../questions/GridPosition";
 import { useStateReset } from "../../../utils/hooks/useStateReset";
 
 export function useGridItemSelection(
-  quizId: string,
+  deps: readonly unknown[],
   initialState?: readonly GridPosition[]
 ) {
   const [selectedItems, setSelectedItems] = useStateReset<
     readonly GridPosition[]
-  >([quizId], () => initialState ?? []);
+  >(deps, () => initialState ?? []);
   const toggleItem = useCallback(
     (column: number, row: number) => {
       setSelectedItems((selectedItems) => {

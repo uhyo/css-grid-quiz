@@ -42,6 +42,7 @@ ${indent(itemStyle)}
     toggleItem,
     extendGrid,
     check,
+    reset,
   } = useQuizPageLogic(quizId, quizData);
 
   const mainGrid = (
@@ -84,10 +85,15 @@ ${indent(itemStyle)}
         )}
       </div>
       <div className={classes.controlGrid}>
+        <button onClick={reset}>Reset</button>
         {buttonState === "check" ? (
-          <button onClick={check}>Check</button>
+          <button className={classes.check} onClick={check}>
+            Check
+          </button>
         ) : buttonState === "correct" ? (
-          <button onClick={check}>Correct!</button>
+          <button className={classes.check} onClick={check}>
+            Correct!
+          </button>
         ) : buttonState === "wrong" ? (
           <button className={classes.wrong} onClick={check}>
             Wrong…

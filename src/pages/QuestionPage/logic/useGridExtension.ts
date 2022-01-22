@@ -10,9 +10,9 @@ export type GridExtensionState = {
   readonly left: number;
 };
 
-export function useGridExtension(quizId: string) {
+export function useGridExtension(deps: readonly unknown[]) {
   const [extension, setExtension] = useStateReset<GridExtensionState>(
-    [quizId],
+    deps,
     () => ({
       top: 0,
       right: 0,

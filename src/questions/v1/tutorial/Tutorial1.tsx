@@ -55,9 +55,7 @@ function useSampleGrid() {
     columns: 2,
     rows: 2,
   };
-  const { selectedItems, toggleItem } = useGridItemSelection("Tutorial1", [
-    "1,1",
-  ]);
+  const { selectedItems, toggleItem } = useGridItemSelection([], ["1,1"]);
 
   return {
     gridDef,
