@@ -16,7 +16,7 @@ export const QuestionPage: React.VFC = () => {
     return null;
   }
   if (quizData.type === "tutorial") {
-    return <TutorialPage tutorial={quizData} />;
+    return <TutorialPage id={id} tutorial={quizData} />;
   }
   return <QuizPage quizId={id} quizData={quizData} />;
 };

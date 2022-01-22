@@ -1,3 +1,7 @@
-.tutorial {
+.tutorial h1 {
+  font-size: 2em;
+}
 
+.sampleGridWrapper {
+  width: 250px;
 }

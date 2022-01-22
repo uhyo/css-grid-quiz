@@ -1,16 +1,19 @@
 import { Tutorial } from "../../../questions/QuestionData";
+import { useNextPage } from "../hooks/useNextPage";
 import classes from "../QuestionPage.module.css";
 
 type Props = {
+  id: string;
   tutorial: Tutorial;
 };
 
-export const TutorialPage: React.VFC<Props> = ({ tutorial }) => {
+export const TutorialPage: React.VFC<Props> = ({ id, tutorial }) => {
+  const { goToNextPage } = useNextPage(id);
   return (
     <div className={classes.page}>
       <div className={classes.tutorialArea}>{tutorial.contents}</div>
       <div className={classes.controlGrid}>
-        <button>Proceed</button>
+        <button onClick={goToNextPage}>Proceed</button>
       </div>
     </div>
   );

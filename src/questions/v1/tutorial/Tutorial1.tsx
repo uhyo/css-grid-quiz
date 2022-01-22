@@ -1,6 +1,10 @@
+import { useCallback, useState } from "react";
+import { GridArea } from "../../../pages/QuestionPage/components/GridArea";
+import { GridPosition } from "../../GridPosition";
 import classes from "./Tutorial.module.css";
 
 export const Tutorial1: React.VFC = () => {
+  const { gridDef, selectedItems, toggleItem } = useSampleGrid();
   return (
     <article className={classes.tutorial}>
       <h1>Tutorial #1</h1>
@@ -35,6 +39,41 @@ export const Tutorial1: React.VFC = () => {
         element. Press “Check” button to check your answer.
       </p>
       <p>Sample:</p>
+      <div className={classes.sampleGridWrapper}>
+        <GridArea
+          gridDef={gridDef}
+          selectedItems={selectedItems}
+          toggleItem={toggleItem}
+        />
+      </div>
     </article>
   );
 };
+
+function useSampleGrid() {
+  const gridDef = {
+    columns: 2,
+    rows: 2,
+  };
+  const [selectedItems, setSelectedItems] = useState<readonly GridPosition[]>([
+    "1-1",
+  ]);
+  const toggleItem = useCallback((column: number, row: number) => {
+    setSelectedItems((selectedItems) => {
+      if (selectedItems.includes(`${column}-${row}`)) {
+        const newSelectedItems = selectedItems.filter(
+          (item) => item !== `${column}-${row}`
+        );
+        return newSelectedItems;
+      } else {
+        return [...selectedItems, `${column}-${row}`];
+      }
+    });
+  }, []);
+
+  return {
+    gridDef,
+    selectedItems,
+    toggleItem,
+  };
+}
