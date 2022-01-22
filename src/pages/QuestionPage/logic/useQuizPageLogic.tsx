@@ -61,7 +61,6 @@ function checkAnswer(
   answer: readonly GridPosition[]
 ) {
   // TODO: O(N^2)
-  console.log(selectedItems, answer);
   return (
     selectedItems.length === answer.length &&
     selectedItems.every((item) => answer.includes(item))

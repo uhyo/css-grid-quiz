@@ -10,9 +10,10 @@ import classes from "../QuestionPage.module.css";
 type Props = {
   quizId: string;
   quizData: QuizData;
+  cheat: boolean;
 };
 
-export const QuizPage: React.VFC<Props> = ({ quizId, quizData }) => {
+export const QuizPage: React.VFC<Props> = ({ quizId, quizData, cheat }) => {
   const { gridStyle, subgridStyle, itemStyle, gridDef, extensible } = quizData;
 
   const { gridStyleDisp, gridStyleObj } = useMemo(
@@ -68,20 +69,22 @@ ${indent(itemStyle)}
         selectedItems={selectedItems}
         toggleItem={toggleItem}
       />
-      <GridArea
-        className={classes.cheatGrid}
-        extension={extension}
-        style={gridStyleObj}
-        gridDef={gridDef}
-      >
-        {subgridStyleObj ? (
-          <div className={classes.cheatSubgrid} style={subgridStyleObj}>
+      {cheat && (
+        <GridArea
+          className={classes.cheatGrid}
+          extension={extension}
+          style={gridStyleObj}
+          gridDef={gridDef}
+        >
+          {subgridStyleObj ? (
+            <div className={classes.cheatSubgrid} style={subgridStyleObj}>
+              <div className={classes.cheatItem} style={itemStyleObj} />
+            </div>
+          ) : (
             <div className={classes.cheatItem} style={itemStyleObj} />
-          </div>
-        ) : (
-          <div className={classes.cheatItem} style={itemStyleObj} />
-        )}
-      </GridArea>
+          )}
+        </GridArea>
+      )}
     </div>
   );
 
