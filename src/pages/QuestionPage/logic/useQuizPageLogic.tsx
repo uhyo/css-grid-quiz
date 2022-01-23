@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useReducer } from "react";
 import { GridPosition } from "../../../questions/GridPosition";
 import { QuizData } from "../../../questions/QuestionData";
+import { useStateReset } from "../../../utils/hooks/useStateReset";
 import { useNextPage } from "../hooks/useNextPage";
 import { useGridExtension } from "./useGridExtension";
 import { useGridItemSelection } from "./useGridItemSelection";
@@ -18,7 +19,10 @@ export function useQuizPageLogic(quizId: string, data: QuizData) {
     quizId,
     resetCount,
   ]);
-  const [buttonState, setButtonState] = useState<ButtonState>("check");
+  const [buttonState, setButtonState] = useStateReset<ButtonState>(
+    [quizId],
+    () => "check"
+  );
 
   const check = useCallback(() => {
     if (checkAnswer(selectedItems, data.answer)) {
@@ -31,9 +35,8 @@ export function useQuizPageLogic(quizId: string, data: QuizData) {
   useEffect(() => {
     if (buttonState === "correct") {
       const timer = setTimeout(() => {
-        setButtonState("check");
         goToNextPage();
-      }, 500);
+      }, 300);
       return () => clearTimeout(timer);
     }
     if (buttonState === "wrong") {
