@@ -52,14 +52,14 @@ export const GridArea: React.VFC<Props> = (props) => {
             return (
               <button
                 key={`column-${column}`}
+                role="checkbox"
+                aria-checked={isSelected}
                 className={
                   isSelected ? classes.selectedItem : classes.normalItem
                 }
                 style={getGridPlacelement(column, row, gridDef)}
                 onClick={() => props.toggleItem(column, row)}
-                aria-label={`${
-                  isSelected ? "selected " : ""
-                }(${column}, ${row})`}
+                aria-label={`(${column}, ${row})`}
               >
                 {isInGrid(column, row, gridDef) ? `(${column}, ${row})` : null}
               </button>

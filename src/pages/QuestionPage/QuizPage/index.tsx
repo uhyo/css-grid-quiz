@@ -1,11 +1,11 @@
-import { useMemo } from "react";
+import { memo, useEffect, useMemo, useRef } from "react";
 import { Link } from "react-location";
 import { QuizData } from "../../../questions/QuestionData";
 import { indent } from "../../../utils/indent";
 import { simpleParseCss } from "../../../utils/simpleParseCss";
 import { GridArea } from "../components/GridArea";
 import { GridAreaExtensionControl } from "../components/GridAreaExtensionControl";
-import { useQuizPageLogic } from "../logic/useQuizPageLogic";
+import { ButtonState, useQuizPageLogic } from "../logic/useQuizPageLogic";
 import classes from "../QuestionPage.module.css";
 
 type Props = {
@@ -16,6 +16,12 @@ type Props = {
 
 export const QuizPage: React.VFC<Props> = ({ quizId, quizData, cheat }) => {
   const { gridStyle, subgridStyle, itemStyle, gridDef, extensible } = quizData;
+  const pageTitleRef = useRef<HTMLHeadingElement | null>(null);
+
+  useEffect(() => {
+    // a11y
+    pageTitleRef.current?.focus();
+  }, [quizId]);
 
   const { gridStyleDisp, gridStyleObj } = useMemo(
     () => ({
@@ -91,20 +97,19 @@ ${indent(itemStyle)}
 
   return (
     <section className={classes.page}>
-      <h1 className={classes.titleArea}>Page {quizId}</h1>
-      <div className={classes.defs}>
-        <pre className={classes.eachDef}>
-          <code>{gridStyleDisp}</code>
-        </pre>
-        {subgridStyleDisp ? (
-          <pre className={classes.eachDef}>
-            <code>{subgridStyleDisp}</code>
-          </pre>
-        ) : null}
-        <pre className={classes.eachDef}>
-          <code>{itemStyleDisp}</code>
-        </pre>
-      </div>
+      <h1
+        aria-live="polite"
+        tabIndex={0}
+        ref={pageTitleRef}
+        className={classes.titleArea}
+      >
+        Page {quizId}
+      </h1>
+      <GridDefs
+        gridStyleDisp={gridStyleDisp}
+        subgridStyleDisp={subgridStyleDisp}
+        itemStyleDisp={itemStyleDisp}
+      />
       <div className={classes.mainArea}>
         {extensible ? (
           <GridAreaExtensionControl onExtend={extendGrid}>
@@ -114,25 +119,57 @@ ${indent(itemStyle)}
           mainGrid
         )}
       </div>
-      <div className={classes.controlGrid}>
-        <Link className={classes.goToTop} to="/">
-          Go to Top
-        </Link>
-        <button onClick={reset}>Reset</button>
-        {buttonState === "check" ? (
-          <button className={classes.check} onClick={check}>
-            Check
-          </button>
-        ) : buttonState === "correct" ? (
-          <button className={classes.check} onClick={check}>
-            Correct!
-          </button>
-        ) : buttonState === "wrong" ? (
-          <button className={classes.wrong} onClick={check}>
-            Wrong…
-          </button>
-        ) : null}
-      </div>
+      <ControlGrid buttonState={buttonState} check={check} reset={reset} />
     </section>
   );
 };
+
+const GridDefs: React.VFC<{
+  gridStyleDisp: string;
+  subgridStyleDisp: string | undefined;
+  itemStyleDisp: string;
+}> = memo(({ gridStyleDisp, subgridStyleDisp, itemStyleDisp }) => {
+  return (
+    <div className={classes.defs}>
+      <pre className={classes.eachDef}>
+        <code>{gridStyleDisp}</code>
+      </pre>
+      {subgridStyleDisp ? (
+        <pre className={classes.eachDef}>
+          <code>{subgridStyleDisp}</code>
+        </pre>
+      ) : null}
+      <pre className={classes.eachDef}>
+        <code>{itemStyleDisp}</code>
+      </pre>
+    </div>
+  );
+});
+
+const ControlGrid: React.VFC<{
+  buttonState: ButtonState;
+  reset: () => void;
+  check: () => void;
+}> = memo(({ buttonState, reset, check }) => {
+  return (
+    <div className={classes.controlGrid}>
+      <Link className={classes.goToTop} to="/">
+        Go to Top
+      </Link>
+      <button onClick={reset}>Reset</button>
+      {buttonState === "check" ? (
+        <button className={classes.check} onClick={check}>
+          Check
+        </button>
+      ) : buttonState === "correct" ? (
+        <button className={classes.check} onClick={check}>
+          Correct!
+        </button>
+      ) : buttonState === "wrong" ? (
+        <button className={classes.wrong} onClick={check}>
+          Wrong…
+        </button>
+      ) : null}
+    </div>
+  );
+});

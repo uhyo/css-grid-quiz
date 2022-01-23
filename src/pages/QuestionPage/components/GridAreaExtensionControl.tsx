@@ -13,7 +13,6 @@ export const GridAreaExtensionControl: React.VFC<Props> = ({
 }) => {
   return (
     <div className={classes.wrapper}>
-      <div className={classes.main}>{children}</div>
       <div className={classes.top}>
         <button
           aria-label="Extend the top edge"
@@ -50,6 +49,7 @@ export const GridAreaExtensionControl: React.VFC<Props> = ({
           <img src={plusImage} width={20} height={20} alt="plus" />
         </button>
       </div>
+      <div className={classes.main}>{children}</div>
     </div>
   );
 };
