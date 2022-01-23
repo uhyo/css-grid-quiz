@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { Link } from "react-location";
 import { QuizData } from "../../../questions/QuestionData";
 import { indent } from "../../../utils/indent";
 import { simpleParseCss } from "../../../utils/simpleParseCss";
@@ -114,6 +115,9 @@ ${indent(itemStyle)}
         )}
       </div>
       <div className={classes.controlGrid}>
+        <Link className={classes.goToTop} to="/">
+          Go to Top
+        </Link>
         <button onClick={reset}>Reset</button>
         {buttonState === "check" ? (
           <button className={classes.check} onClick={check}>

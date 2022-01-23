@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && cp -r ./public ./dist/",
     "preview": "vite preview",
     "typecheck": "tsc --watch"
   },

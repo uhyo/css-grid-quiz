@@ -17,7 +17,7 @@ export const TopPage: React.VFC = () => {
           className={classes.logo}
           src={logoImage}
           width={1000}
-          height={500}
+          height={400}
           alt="CSS Grid Mastery Quiz"
         />
       </h1>
@@ -44,6 +44,15 @@ export const TopPage: React.VFC = () => {
         <a href={shareOnTwitterlink} target="_blank" rel="external noopener">
           Share on Twitter
         </a>
+      </p>
+      <p>
+        <small>
+          This site is using{" "}
+          <a href="https://twemoji.twitter.com/" rel="external">
+            Twemoji
+          </a>
+          .
+        </small>
       </p>
     </div>
   );

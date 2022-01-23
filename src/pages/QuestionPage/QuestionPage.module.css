@@ -126,19 +126,27 @@
   background-size: auto auto;
   background-color: var(--body-bg-color);
   background-image: repeating-linear-gradient(120deg, transparent, transparent 25px, var(--cont-bg-color) 25px, var(--cont-bg-color) 40px );
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
   align-items: center;
+  padding: 0 1em;
   gap: 1em;
 }
 
-.controlGrid button {
+.controlGrid :is(a, button) {
+  display: inline-block;
+  width: max-content;
   border-radius: 0.75em;
   padding: 0.25em 0.5em;
   background-color: #888888;
   color: white;
   font-weight: bold;
+  text-decoration: none;
+  font-size: calc(10px + 2vmin);
+}
+
+.controlGrid button.goToTop {
+  justify-self: start;
 }
 
 .controlGrid button.check {
