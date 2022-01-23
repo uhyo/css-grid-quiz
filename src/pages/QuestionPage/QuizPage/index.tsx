@@ -125,6 +125,8 @@ ${indent(itemStyle)}
         check={check}
         reset={reset}
         getCheat={getCheat}
+        isCheat={cheat}
+        isSubgrid={quizData.subgridStyle !== undefined}
       />
     </section>
   );
@@ -154,10 +156,12 @@ const GridDefs: React.VFC<{
 
 const ControlGrid: React.VFC<{
   buttonState: ButtonState;
+  isCheat: boolean;
+  isSubgrid: boolean;
   reset: () => void;
   check: () => void;
   getCheat: (() => void) | undefined;
-}> = memo(({ buttonState, reset, check, getCheat }) => {
+}> = memo(({ buttonState, isCheat, reset, check, getCheat }) => {
   return (
     <div className={classes.controlGrid}>
       <Link className={classes.goToTop} to="/">
@@ -183,6 +187,11 @@ const ControlGrid: React.VFC<{
         <button className={classes.wrong} onClick={check}>
           Wrong…
         </button>
+      ) : null}
+      {isCheat ? (
+        <p className={classes.cheatNotice}>
+          Note: cheat for subgrids only works for browsers that support subgrid.
+        </p>
       ) : null}
     </div>
   );

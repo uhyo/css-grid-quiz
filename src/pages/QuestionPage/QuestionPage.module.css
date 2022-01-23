@@ -133,6 +133,10 @@
   gap: 1em;
 }
 
+.controlGrid.hasCheatNote {
+  grid-template-rows: auto auto;
+}
+
 .controlGrid :is(a, button) {
   display: inline-block;
   width: max-content;
@@ -160,6 +164,13 @@
 
 .controlGrid button.wrong {
   background-color: #1d6fb6;
+}
+
+.controlGrid .cheatNotice {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: 0;
+  font-size: 0.9em;
 }
 
 .tutorialArea {
