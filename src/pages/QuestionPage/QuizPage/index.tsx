@@ -25,7 +25,7 @@ export const QuizPage: React.VFC<Props> = ({ quizId, quizData, cheat }) => {
 
   const { gridStyleDisp, gridStyleObj } = useMemo(
     () => ({
-      gridStyleDisp: `.container {
+      gridStyleDisp: `.grid-container {
   display: grid;
 ${indent(gridStyle)}
 }`,
@@ -47,7 +47,7 @@ ${indent(subgridStyle)}
   }, [subgridStyle]);
   const { itemStyleDisp, itemStyleObj } = useMemo(
     () => ({
-      itemStyleDisp: `.item {
+      itemStyleDisp: `.grid-item {
 ${indent(itemStyle)}
 }`,
       itemStyleObj: simpleParseCss(itemStyle),
