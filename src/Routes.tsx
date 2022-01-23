@@ -1,11 +1,12 @@
 import { ReactLocation, Route, Router } from "react-location";
 import { QuestionPage } from "./pages/QuestionPage";
+import { TopPage } from "./pages/TopPage";
 import { loadQuestionV1 } from "./questions/loadQuestion";
 
 const routes: Route[] = [
   {
     path: "/",
-    element: <p>Top Page!</p>,
+    element: <TopPage />,
   },
   {
     path: "/quiz",

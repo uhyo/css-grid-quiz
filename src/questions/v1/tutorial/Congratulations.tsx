@@ -4,7 +4,7 @@ import classes from "./Tutorial.module.css";
 
 export const Congratulations: React.VFC = () => {
   const twitterIntent = useMemo(() => {
-    const text = "I solved all the problems in CSS Grid Mastery Quiz!";
+    const text = "I solved all the problems in CSS Grid Mastery Quiz!\n";
     return `https://twitter.com/intent/tweet?text=${encodeURIComponent(
       text
     )}&url=${encodeURIComponent(appUrl)}`;

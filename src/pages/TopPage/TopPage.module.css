@@ -1,0 +1,36 @@
+.topPage {
+  width: max-content;
+  max-width: calc(100% - 16px);
+  margin: 0 auto;
+  padding: 8px;
+}
+
+.topPage > h1 {
+  text-align: center;
+}
+
+.logo {
+  width: 500px;
+  height: auto;
+  max-width: 100%;
+}
+
+.tutorialLink {
+  text-align: center;
+}
+
+.tutorialLink > a {
+  display: inline-block;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  background-color: #777777;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-decoration: none;
+}
+
+.topPage hr {
+  border: none;
+  border-top: 1px solid #cccccc;
+}
