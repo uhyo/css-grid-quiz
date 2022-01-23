@@ -71,12 +71,14 @@ export function useQuizPageLogic(
     }
     return () => {
       navigate({
-        search: {
-          cheat: "1",
-        },
+        search: isCheat
+          ? {}
+          : {
+              cheat: "1",
+            },
       });
     };
-  }, [wrongCount]);
+  }, [wrongCount, isCheat]);
 
   return {
     selectedItems,
