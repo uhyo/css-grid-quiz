@@ -161,7 +161,7 @@ const ControlGrid: React.VFC<{
   reset: () => void;
   check: () => void;
   getCheat: (() => void) | undefined;
-}> = memo(({ buttonState, isCheat, reset, check, getCheat }) => {
+}> = memo(({ buttonState, isCheat, isSubgrid, reset, check, getCheat }) => {
   return (
     <div className={classes.controlGrid}>
       <Link className={classes.goToTop} to="/">
@@ -188,7 +188,7 @@ const ControlGrid: React.VFC<{
           Wrong…
         </button>
       ) : null}
-      {isCheat ? (
+      {isCheat && isSubgrid ? (
         <p className={classes.cheatNotice}>
           Note: cheat for subgrids only works for browsers that support subgrid.
         </p>
