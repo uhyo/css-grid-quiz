@@ -22,9 +22,9 @@ export function useGridExtension(deps: readonly unknown[]) {
   );
 
   const extend = useCallback(
-    (direction: EdgeDirection) => {
+    (direction: EdgeDirection, amount = 1) => {
       setExtension((prev) => {
-        return { ...prev, [direction]: prev[direction] + 1 };
+        return { ...prev, [direction]: prev[direction] + amount };
       });
     },
     [setExtension]

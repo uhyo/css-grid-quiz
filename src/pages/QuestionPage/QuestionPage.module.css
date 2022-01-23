@@ -127,7 +127,7 @@
   background-color: var(--body-bg-color);
   background-image: repeating-linear-gradient(120deg, transparent, transparent 25px, var(--cont-bg-color) 25px, var(--cont-bg-color) 40px );
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: 1fr auto auto auto;
   align-items: center;
   padding: 0 1em;
   gap: 1em;
@@ -151,6 +151,11 @@
 
 .controlGrid button.check {
   background-color: #0cb826;
+}
+
+.controlGrid button.cheat {
+  background-color: #eebc18;
+  color: black;
 }
 
 .controlGrid button.wrong {

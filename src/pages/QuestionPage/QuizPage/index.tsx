@@ -63,7 +63,8 @@ ${indent(itemStyle)}
     extendGrid,
     check,
     reset,
-  } = useQuizPageLogic(quizId, quizData);
+    getCheat,
+  } = useQuizPageLogic(quizId, quizData, cheat);
 
   const mainGrid = (
     <div className={classes.mainGridContainer}>
@@ -119,7 +120,12 @@ ${indent(itemStyle)}
           mainGrid
         )}
       </div>
-      <ControlGrid buttonState={buttonState} check={check} reset={reset} />
+      <ControlGrid
+        buttonState={buttonState}
+        check={check}
+        reset={reset}
+        getCheat={getCheat}
+      />
     </section>
   );
 };
@@ -150,12 +156,20 @@ const ControlGrid: React.VFC<{
   buttonState: ButtonState;
   reset: () => void;
   check: () => void;
-}> = memo(({ buttonState, reset, check }) => {
+  getCheat: (() => void) | undefined;
+}> = memo(({ buttonState, reset, check, getCheat }) => {
   return (
     <div className={classes.controlGrid}>
       <Link className={classes.goToTop} to="/">
         Go to Top
       </Link>
+      {getCheat !== undefined ? (
+        <button className={classes.cheat} onClick={getCheat}>
+          Cheat
+        </button>
+      ) : (
+        <span />
+      )}
       <button onClick={reset}>Reset</button>
       {buttonState === "check" ? (
         <button className={classes.check} onClick={check}>
