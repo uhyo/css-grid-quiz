@@ -2,26 +2,32 @@ import { ReactLocation, Route, Router } from "react-location";
 import { QuestionPage } from "./pages/QuestionPage";
 import { TopPage } from "./pages/TopPage";
 import { loadQuestionV1 } from "./questions/loadQuestion";
+import { DefineLanguageRoute } from "./utils/i18n/DefineLanguageRoute";
 
 const routes: Route[] = [
   {
-    path: "/",
-    element: <TopPage />,
-  },
-  {
-    path: "/quiz",
+    element: <DefineLanguageRoute />,
     children: [
       {
-        path: "/v1",
+        path: "/",
+        element: <TopPage />,
+      },
+      {
+        path: "/quiz",
         children: [
           {
-            path: ":id",
-            loader: async ({ params }) => {
-              return {
-                quizData: await loadQuestionV1(params.id),
-              };
-            },
-            element: <QuestionPage />,
+            path: "/v1",
+            children: [
+              {
+                path: ":id",
+                loader: async ({ params }) => {
+                  return {
+                    quizData: await loadQuestionV1(params.id),
+                  };
+                },
+                element: <QuestionPage />,
+              },
+            ],
           },
         ],
       },
