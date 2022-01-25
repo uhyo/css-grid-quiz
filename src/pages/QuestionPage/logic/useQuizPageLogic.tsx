@@ -71,11 +71,13 @@ export function useQuizPageLogic(
     }
     return () => {
       navigate({
-        search: isCheat
-          ? {}
-          : {
-              cheat: "1",
-            },
+        search: (old) =>
+          isCheat
+            ? { lang: old?.lang }
+            : {
+                cheat: "1",
+                lang: old?.lang,
+              },
       });
     };
   }, [wrongCount, isCheat]);

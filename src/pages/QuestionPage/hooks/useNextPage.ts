@@ -8,6 +8,9 @@ export function useNextPage(id: string) {
   const goToNextPage = useCallback(() => {
     navigate({
       to: nextPageUrl,
+      search: (old) => ({
+        lang: old?.lang,
+      }),
     });
   }, [nextPageUrl]);
   return {

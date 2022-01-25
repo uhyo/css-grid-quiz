@@ -59,15 +59,32 @@ export const TopPage: React.VFC = () => {
 
   return (
     <div className={classes.topPage}>
-      <h1>
-        <img
-          className={classes.logo}
-          src={logoImage}
-          width={1000}
-          height={400}
-          alt="CSS Grid Mastery Quiz"
-        />
-      </h1>
+      <header>
+        <h1>
+          <img
+            className={classes.logo}
+            src={logoImage}
+            width={1000}
+            height={400}
+            alt="CSS Grid Mastery Quiz"
+          />
+        </h1>
+        <p>
+          <Link to="/" search={{}} replace>
+            English
+          </Link>{" "}
+          |{" "}
+          <Link
+            to="/"
+            search={{
+              lang: "ja",
+            }}
+            replace
+          >
+            日本語
+          </Link>
+        </p>
+      </header>
       {langs.intro}
       <p className={classes.tutorialLink}>
         <Link to="/quiz/v1/1" search>

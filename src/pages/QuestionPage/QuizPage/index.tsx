@@ -1,6 +1,7 @@
 import { memo, useEffect, useMemo, useRef } from "react";
 import { Link } from "react-location";
 import { QuizData } from "../../../questions/QuestionData";
+import { useI18n } from "../../../utils/i18n/LanguageContext";
 import { indent } from "../../../utils/indent";
 import { simpleParseCss } from "../../../utils/simpleParseCss";
 import { GridArea } from "../components/GridArea";
@@ -162,10 +163,26 @@ const ControlGrid: React.VFC<{
   check: () => void;
   getCheat: (() => void) | undefined;
 }> = memo(({ buttonState, isCheat, isSubgrid, reset, check, getCheat }) => {
+  const langs = useI18n({
+    en: {
+      goToTop: "Go to Top",
+      correct: "Correct!",
+      wrong: "Wrong…",
+      subgridCheatNote:
+        "Note: cheat for subgrids only works for browsers that support subgrid.",
+    },
+    ja: {
+      goToTop: "トップへ",
+      correct: "正解！",
+      wrong: "不正解…",
+      subgridCheatNote:
+        "注意：subgridに対するチートはブラウザがsubgridをサポートしている場合のみ正常に動作します。",
+    },
+  });
   return (
     <div className={classes.controlGrid}>
       <Link className={classes.goToTop} to="/">
-        Go to Top
+        {langs.goToTop}
       </Link>
       {getCheat !== undefined ? (
         <button className={classes.cheat} onClick={getCheat}>
@@ -181,17 +198,15 @@ const ControlGrid: React.VFC<{
         </button>
       ) : buttonState === "correct" ? (
         <button className={classes.check} onClick={check}>
-          Correct!
+          {langs.correct}
         </button>
       ) : buttonState === "wrong" ? (
         <button className={classes.wrong} onClick={check}>
-          Wrong…
+          {langs.wrong}
         </button>
       ) : null}
       {isCheat && isSubgrid ? (
-        <p className={classes.cheatNotice}>
-          Note: cheat for subgrids only works for browsers that support subgrid.
-        </p>
+        <p className={classes.cheatNotice}>{langs.subgridCheatNote}</p>
       ) : null}
     </div>
   );
