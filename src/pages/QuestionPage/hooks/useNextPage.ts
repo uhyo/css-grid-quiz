@@ -9,6 +9,7 @@ export function useNextPage(id: string) {
     navigate({
       to: nextPageUrl,
       search: (old) => ({
+        cheat: "",
         lang: old?.lang,
       }),
     });
